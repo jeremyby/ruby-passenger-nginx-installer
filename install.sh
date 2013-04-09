@@ -8,7 +8,7 @@ BASEDIR=$( cd $(dirname $0); pwd)
 
 # Get all dependencies
 sudo yum update
-sudo yum -y install libcurl-devel
+sudo yum -y install libcurl-devel mysql mysql-server mysql-devel
 
 # Stuff used by Ballistiq often
 # ImageMagick (used by Paperclip gem)
