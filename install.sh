@@ -12,7 +12,7 @@ sudo yum -y install libcurl-devel mysql mysql-server mysql-devel
 
 # Stuff used by Ballistiq often
 # ImageMagick (used by Paperclip gem)
-sudo yum -y install ImageMagick
+sudo yum -y install ImageMagick ImageMagick-devel
 
 
 # Install Rvm
