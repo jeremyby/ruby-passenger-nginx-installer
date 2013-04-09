@@ -7,30 +7,21 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 BASEDIR=$( cd $(dirname $0); pwd)
 
 # Get all dependencies
-sudo apt-get update
-sudo apt-get -y install build-essential zlib1g-dev libssl-dev libreadline-dev libyaml-dev libcurl4-openssl-dev curl git-core python-software-properties libsqlite3-dev
+sudo yum update
+sudo yum -y install libcurl-devel
 
 # Stuff used by Ballistiq often
 # ImageMagick (used by Paperclip gem)
-sudo apt-get -y install zip unzip imagemagick
+sudo yum -y install  imagemagick
 # MySQL headers. Required by mysql2 gem
-sudo apt-get -y install libmysql++-dev 
+sudo yum -y install mysql-dev 
 
 # Install Ruby
-mkdir ~/src
-cd ~/src
-wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p286.tar.gz
-tar -zxf ruby-1.9.3-p286.tar.gz
-cd ruby-1.9.3-p286
-./configure
-make
-sudo make install
-echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
-sudo gem install bundler
+curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
 
 # Install Passenger - which will install Nginx
-sudo gem install passenger
-sudo passenger-install-nginx-module --auto --prefix=/opt/nginx --auto-download
+gem install passenger --pre
+passenger-install-nginx-module --auto --prefix=/opt/nginx --auto-download
 
 # Install the control nginx control script
 sudo cp $BASEDIR/nginx.initd /etc/init.d/nginx
