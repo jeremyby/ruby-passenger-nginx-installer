@@ -12,7 +12,7 @@ sudo yum -y install libcurl-devel
 
 # Stuff used by Ballistiq often
 # ImageMagick (used by Paperclip gem)
-sudo yum -y install  imagemagick
+sudo yum -y install ImageMagick
 # MySQL headers. Required by mysql2 gem
 sudo yum -y install mysql-dev 
 
