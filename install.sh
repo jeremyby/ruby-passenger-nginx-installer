@@ -19,7 +19,7 @@ sudo yum -y install ImageMagick ImageMagick-devel
 curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
 
 # Install Passenger - which will install Nginx
-gem install passenger --pre
+gem install passenger passenger -v 4.0.0.rc4
 passenger-install-nginx-module --auto --prefix=/opt/nginx --auto-download
 
 # Install the control nginx control script
