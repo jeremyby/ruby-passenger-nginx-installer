@@ -10,22 +10,14 @@ BASEDIR=$( cd $(dirname $0); pwd)
 sudo yum update
 sudo yum -y install libcurl-devel mysql mysql-server mysql-devel
 
-# Stuff used by Ballistiq often
-# ImageMagick (used by Paperclip gem)
-sudo yum -y install ImageMagick ImageMagick-devel
-
 
 # Install Rvm
 curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
 
-# Install Passenger - which will install Nginx
-gem install passenger passenger -v 4.0.0.rc4
-passenger-install-nginx-module --auto --prefix=/opt/nginx --auto-download
+# Install Rubinius for Ruby 1.9
+rvm install rbx --1.9
 
-# Install the control nginx control script
-sudo cp $BASEDIR/nginx.initd /etc/init.d/nginx
-sudo chmod +x /etc/init.d/nginx
-sudo update-rc.d -f nginx defaults
+# Deploy!
 
-# Use service to start nginx
-sudo service nginx start
+# Copy nginx conf from config/server/ to /opt/nginx/conf/ abd Start server
+#sudo service nginx start
